@@ -1,15 +1,37 @@
 <gglca>
   <siteSettings>
     <siteTitle>Green Glen Layout Cultural Association</siteTitle>
+    <shortTitle>GGLCA</shortTitle>
     <tagline>Community, culture, social work, and celebrations</tagline>
+    <logo>https://drive.google.com/uc?export=view&id=YOUR_GGLCA_LOGO_FILE_ID</logo>
     <primaryColor>#d63b2f</primaryColor>
     <secondaryColor>#ff8a00</secondaryColor>
     <accentColor>#7f2aff</accentColor>
   </siteSettings>
 
+  <navigation>
+    <tab id="home" label="Home" visible="true" />
+    <tab id="events" label="Events" visible="true" />
+    <tab id="social-work" label="Social Work" visible="true" />
+    <tab id="publications" label="Publications" visible="true" />
+    <tab id="media" label="Media" visible="true" />
+    <tab id="join-us" label="Join Us" visible="true" />
+    <tab id="about-us" label="About Us" visible="true" />
+  </navigation>
+
+  <sections>
+    <section id="home" label="Home" title="Welcome to GGLCA" description="Dynamic homepage content from XML" type="home" />
+    <section id="events" label="Events" title="Each event can show multiple photos" description="Event albums are grouped in XML and displayed here." type="events" />
+    <section id="social-work" label="Social Work" title="Service stories with grouped visuals" description="Social work stories can also have image groups." type="socialWork" />
+    <section id="publications" label="Publications" title="PDF publications shown newest first" description="Publication PDFs are sorted by date descending." type="publications" />
+    <section id="media" label="Media" title="Gallery, sponsors, and media coverage" description="Broader visual media content stays organized here." type="media" />
+    <section id="join-us" label="Join Us" title="Make membership and participation frictionless" description="Membership, volunteer, and contact calls to action." type="joinUs" />
+    <section id="about-us" label="About Us" title="A strong community story, backed by real people" description="Council data and association information." type="aboutUs" />
+  </sections>
+
   <home>
     <heroTitle>Welcome to GGLCA</heroTitle>
-    <heroText>This page now supports grouped event photos and a Publications tab with latest-first PDFs.</heroText>
+    <heroText>This site now supports future tab additions and removals directly from XML, plus a logo placeholder for GGLCA in the XML settings.</heroText>
   </home>
 
   <council>
@@ -62,13 +84,17 @@
   </gallery>
 
   <sponsors>
-    <logo name="Sponsor One" src="https://drive.google.com/uc?export=view&id=YOUR_FILE_ID" url="https://example.com" />
-    <logo name="Sponsor Two" src="https://drive.google.com/uc?export=view&id=YOUR_FILE_ID" url="https://example.com" />
-    <logo name="Sponsor Three" src="https://drive.google.com/uc?export=view&id=YOUR_FILE_ID" url="https://example.com" />
+    <logoItem name="Sponsor One" src="https://drive.google.com/uc?export=view&id=YOUR_FILE_ID" url="https://example.com" />
+    <logoItem name="Sponsor Two" src="https://drive.google.com/uc?export=view&id=YOUR_FILE_ID" url="https://example.com" />
+    <logoItem name="Sponsor Three" src="https://drive.google.com/uc?export=view&id=YOUR_FILE_ID" url="https://example.com" />
   </sponsors>
 
   <media>
     <publicationImage title="Press Coverage" source="Publication Name" image="https://drive.google.com/uc?export=view&id=YOUR_FILE_ID" />
     <publicationImage title="Event Spotlight" source="Community News" image="https://drive.google.com/uc?export=view&id=YOUR_FILE_ID" />
   </media>
+
+  <customTabExample>
+    <item title="Example future tab card" meta="Custom" text="You can add a new tab and point its section type to genericCards with this XML source." />
+  </customTabExample>
 </gglca>

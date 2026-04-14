@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>GGLCA | Green Glen Layout Cultural Association</title>
-  <meta name="description" content="Green Glen Layout Cultural Association — dynamic single-page website powered by XML content, folder-based image groups, and publication PDFs." />
+  <meta name="description" content="GGLCA single-page site with XML-driven navigation, dynamic sections, grouped images, publication PDFs, and logo placeholder support." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
@@ -44,8 +44,10 @@
     .section-copy { color:var(--color-text-muted); margin-top:var(--space-4); max-width:64ch; }
     header { position:sticky; top:0; z-index:100; backdrop-filter:blur(14px); background:color-mix(in srgb, var(--color-bg) 84%, transparent 16%); border-bottom:1px solid var(--color-divider); }
     .nav-wrap { display:flex; align-items:center; justify-content:space-between; gap:var(--space-4); min-height:76px; }
-    .brand { display:flex; align-items:center; gap:var(--space-3); font-weight:700; }
-    .brand svg { width:42px; height:42px; color:var(--color-primary); }
+    .brand { display:flex; align-items:center; gap:var(--space-3); font-weight:700; min-width:0; }
+    .brand-mark { width:48px; height:48px; border-radius:14px; overflow:hidden; display:flex; align-items:center; justify-content:center; background:var(--color-surface); border:1px solid var(--color-border); box-shadow:var(--shadow-sm); flex:0 0 auto; }
+    .brand-mark img { width:100%; height:100%; object-fit:contain; }
+    .brand svg { width:32px; height:32px; color:var(--color-primary); }
     .brand-text strong { display:block; font-size:var(--text-sm); }
     .brand-text span { display:block; font-size:var(--text-xs); color:var(--color-text-muted); }
     nav ul { display:flex; align-items:center; gap:.35rem; list-style:none; flex-wrap:wrap; }
@@ -55,10 +57,10 @@
     .icon-btn, .cta-btn { min-width:44px; min-height:44px; border-radius:var(--radius-full); display:inline-flex; align-items:center; justify-content:center; }
     .icon-btn { background:var(--color-surface); border:1px solid var(--color-border); }
     .cta-btn { padding:.85rem 1.2rem; background:linear-gradient(135deg, var(--color-primary), var(--color-secondary)); color:white; font-size:var(--text-sm); font-weight:700; box-shadow:var(--shadow-sm); }
-    .hero-grid, .grid-2, .grid-3, .footer-grid, .publication-grid, .folder-grid, .council-grid { display:grid; gap:var(--space-5); }
+    .hero-grid, .grid-2, .grid-3, .footer-grid, .publication-grid, .folder-grid, .council-grid, .dynamic-grid { display:grid; gap:var(--space-5); }
     .hero-grid { grid-template-columns:1.15fr .85fr; align-items:center; gap:clamp(var(--space-8), 5vw, var(--space-16)); }
     .grid-2 { grid-template-columns:repeat(2, minmax(0,1fr)); }
-    .grid-3, .publication-grid, .folder-grid, .council-grid { grid-template-columns:repeat(3, minmax(0,1fr)); }
+    .grid-3, .publication-grid, .folder-grid, .council-grid, .dynamic-grid { grid-template-columns:repeat(3, minmax(0,1fr)); }
     .hero h1 { font-family:var(--font-display); font-size:clamp(2.8rem,1.4rem + 4.5vw,5.2rem); line-height:.97; max-width:10ch; letter-spacing:-.02em; }
     .hero p { margin-top:var(--space-5); color:var(--color-text-muted); max-width:58ch; }
     .hero-actions, .chips, .join-links { display:flex; flex-wrap:wrap; gap:var(--space-3); margin-top:var(--space-6); }
@@ -76,8 +78,6 @@
     .gallery-item, .folder-item { overflow:hidden; min-height:220px; border-radius:var(--radius-lg); border:1px solid var(--color-border); background:var(--color-surface-offset); box-shadow:var(--shadow-sm); position:relative; }
     .gallery-item img, .folder-item img, .media-logo img, .council-avatar img { width:100%; height:100%; object-fit:cover; }
     .gallery-label { position:absolute; left:var(--space-4); right:var(--space-4); bottom:var(--space-4); padding:var(--space-3); border-radius:var(--radius-md); background:rgba(255,255,255,.78); backdrop-filter:blur(8px); color:#4b2b18; font-size:var(--text-sm); font-weight:700; }
-    .folder-item { min-height:280px; }
-    .folder-caption { padding: var(--space-4); color: var(--color-text-muted); font-size: var(--text-sm); }
     .media-logo { min-height:160px; display:flex; align-items:center; justify-content:center; background:var(--color-surface); }
     .join-box { display:grid; grid-template-columns:1fr auto; gap:var(--space-6); align-items:center; background:linear-gradient(135deg, var(--color-primary), var(--color-secondary)); color:white; padding:clamp(var(--space-6), 5vw, var(--space-10)); border-radius:var(--radius-xl); box-shadow:var(--shadow-md); }
     .join-box p { color:rgba(255,255,255,.86); max-width:58ch; }
@@ -87,11 +87,12 @@
     .pdf-badge { display:inline-flex; align-items:center; gap:.4rem; padding:.35rem .65rem; border-radius:999px; background:color-mix(in srgb, var(--color-primary) 10%, white 90%); color:var(--color-primary); font-size:var(--text-xs); font-weight:700; margin-bottom:var(--space-3); }
     .pub-actions { display:flex; gap:var(--space-3); flex-wrap:wrap; margin-top:var(--space-4); }
     .pub-actions a { display:inline-flex; align-items:center; justify-content:center; min-height:40px; padding:.7rem 1rem; border-radius:999px; background:var(--color-surface-offset); font-size:var(--text-sm); font-weight:700; }
+    .dynamic-section { scroll-margin-top: 92px; }
     footer { padding:var(--space-10) 0 var(--space-12); color:var(--color-text-muted); }
     .footer-grid { grid-template-columns:1.2fr .8fr; align-items:start; padding-top:var(--space-6); border-top:1px solid var(--color-divider); }
     .mobile-nav-toggle { display:none; }
     @media (max-width: 980px) {
-      .hero-grid, .grid-2, .grid-3, .footer-grid, .join-box, .council-grid, .publication-grid, .folder-grid { grid-template-columns:1fr; }
+      .hero-grid, .grid-2, .grid-3, .footer-grid, .join-box, .council-grid, .publication-grid, .folder-grid, .dynamic-grid { grid-template-columns:1fr; }
       .gallery-grid { grid-template-columns:repeat(2, minmax(0,1fr)); }
       .hero-stat-row { grid-template-columns:repeat(2, minmax(0,1fr)); }
       nav { position:fixed; inset:76px 1rem auto 1rem; background:color-mix(in srgb, var(--color-bg) 96%, white 4%); border:1px solid var(--color-border); border-radius:var(--radius-lg); padding:var(--space-4); box-shadow:var(--shadow-md); display:none; }
@@ -112,37 +113,41 @@
   <header>
     <div class="container nav-wrap">
       <a class="brand" href="#home" aria-label="GGLCA home">
-        <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="32" cy="32" r="29" stroke="currentColor" stroke-width="3" opacity="0.25"/><path d="M32 11l5.6 10.8 12 1.8-8.7 8.4 2 11.9L32 38.5 21.1 44l2-11.9-8.7-8.4 12-1.8L32 11z" fill="currentColor" opacity="0.18"/><path d="M32 16c3 6.6 8.4 11.9 15 15-6.6 3.1-12 8.4-15 15-3-6.6-8.4-11.9-15-15 6.6-3.1 12-8.4 15-15z" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/></svg>
-        <span class="brand-text"><strong>GGLCA</strong><span id="site-tagline">Green Glen Layout Cultural Association</span></span>
+        <span class="brand-mark" id="brand-mark">
+          <svg id="brand-fallback" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="32" cy="32" r="29" stroke="currentColor" stroke-width="3" opacity="0.25"/><path d="M32 11l5.6 10.8 12 1.8-8.7 8.4 2 11.9L32 38.5 21.1 44l2-11.9-8.7-8.4 12-1.8L32 11z" fill="currentColor" opacity="0.18"/><path d="M32 16c3 6.6 8.4 11.9 15 15-6.6 3.1-12 8.4-15 15-3-6.6-8.4-11.9-15-15 6.6-3.1 12-8.4 15-15z" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/></svg>
+        </span>
+        <span class="brand-text"><strong id="site-title-mini">GGLCA</strong><span id="site-tagline">Green Glen Layout Cultural Association</span></span>
       </a>
-      <nav id="site-nav" aria-label="Primary navigation">
-        <ul>
-          <li><a href="#home">Home</a></li>
-          <li><a href="#events">Events</a></li>
-          <li><a href="#social-work">Social Work</a></li>
-          <li><a href="#publications">Publications</a></li>
-          <li><a href="#media">Media</a></li>
-          <li><a href="#join-us">Join Us</a></li>
-          <li><a href="#about-us">About Us</a></li>
-        </ul>
-      </nav>
+      <nav id="site-nav" aria-label="Primary navigation"><ul id="nav-list"></ul></nav>
       <div class="header-actions">
         <button class="icon-btn mobile-nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Open navigation"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg></button>
         <button class="icon-btn" type="button" data-theme-toggle aria-label="Switch theme"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></button>
-        <a class="cta-btn header-join" href="#join-us">Become a Member</a>
+        <a class="cta-btn header-join" href="#join-us" id="join-btn">Become a Member</a>
       </div>
     </div>
   </header>
 
-  <main>
-    <section class="hero section" id="home">
+  <main id="main-content"></main>
+
+  <footer>
+    <div class="container footer-grid">
+      <div>
+        <div class="brand" style="margin-bottom:.75rem;"><span class="brand-mark" id="footer-brand-mark"><svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="32" cy="32" r="29" stroke="currentColor" stroke-width="3" opacity="0.25"/><path d="M32 16c3 6.6 8.4 11.9 15 15-6.6 3.1-12 8.4-15 15-3-6.6-8.4-11.9-15-15 6.6-3.1 12-8.4 15-15z" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/></svg></span><span class="brand-text"><strong id="footer-site-title">GGLCA</strong><span>Flexible XML-driven deployment package</span></span></div>
+        <p>This build now supports future tab additions and removals directly from XML, plus a GGLCA logo placeholder in XML.</p>
+      </div>
+      <div class="card"><div class="meta">Files in package</div><p>gglca-site.html, sample-content.xml, and README.md with updated XML instructions.</p></div>
+    </div>
+  </footer>
+
+  <template id="hero-template">
+    <section class="hero section dynamic-section" id="home">
       <div class="container hero-grid">
         <div>
           <span class="eyebrow">Community • Culture • Care</span>
           <h1 id="hero-title">A vibrant digital home for the GGLCA community.</h1>
           <p id="hero-text">Loading content from XML...</p>
           <div class="hero-actions">
-            <a class="cta-btn" href="#events">Explore Events</a>
+            <a class="cta-btn" href="#events" id="hero-primary-link">Explore Events</a>
             <a class="icon-btn" href="./sample-content.xml" target="_blank" rel="noopener noreferrer" style="padding:0 1rem; width:auto; border-radius:999px;">Open XML</a>
           </div>
           <div class="hero-stat-row">
@@ -154,101 +159,13 @@
           <div class="status-bar" id="status-bar">Attempting to load sample-content.xml...</div>
         </div>
         <aside class="hero-panel">
-          <div class="stack-card"><div class="meta">Updated content model</div><h3>Folder-style groups supported</h3><p>Each event can now define multiple pictures under its own image group, making it behave like a drive folder-backed album instead of a single-image card.</p></div>
-          <div class="stack-card"><div class="meta">New tab added</div><h3>Publications before media</h3><p>A new Publications section now renders PDF items in latest-first order using dates defined in XML for each document.</p></div>
-          <div class="stack-card"><div class="meta">Practical hosting note</div><h3>XML remains the easiest host-ready method</h3><p>Direct live listing of Google Drive folders is not reliable in plain browser JavaScript, so this package uses folder-style groups in XML to keep hosting simple and predictable.</p><div class="chips"><span class="chip">Event albums</span><span class="chip">PDF list</span><span class="chip">Single page</span></div></div>
+          <div class="stack-card"><div class="meta">Future-ready tabs</div><h3>Navigation now comes from XML</h3><p>You can add, remove, rename, reorder, or hide tabs by editing the XML navigation block and the section definitions.</p></div>
+          <div class="stack-card"><div class="meta">Logo placeholder</div><h3>GGLCA logo can now live in XML</h3><p>Add a logo image URL in XML and the header and footer will render it automatically. If not provided, the built-in SVG mark stays visible.</p></div>
+          <div class="stack-card"><div class="meta">Practical model</div><h3>Still simple to host</h3><p>The site remains a static single-page build, so hosting on gglca.in stays lightweight while content structure becomes more flexible.</p><div class="chips"><span class="chip">Dynamic tabs</span><span class="chip">Logo XML</span><span class="chip">Single page</span></div></div>
         </aside>
       </div>
     </section>
-
-    <section class="section" id="events">
-      <div class="container">
-        <span class="eyebrow">Events</span>
-        <h2 class="section-title">Each event can now show multiple photos.</h2>
-        <p class="section-copy">Instead of a single event image, every event entry can include a folder-style image list. The page will display one card per event and render all photos for that event inside the event section.</p>
-        <div class="folder-grid" id="events-grid" style="margin-top:2rem;"></div>
-      </div>
-    </section>
-
-    <section class="section" id="social-work">
-      <div class="container">
-        <span class="eyebrow">Social Work</span>
-        <h2 class="section-title">Service stories with grouped visual galleries.</h2>
-        <p class="section-copy">Social work entries can also include multiple images if needed, using the same grouped-image model.</p>
-        <div class="folder-grid" id="social-grid" style="margin-top:2rem;"></div>
-      </div>
-    </section>
-
-    <section class="section" id="publications">
-      <div class="container">
-        <span class="eyebrow">Publications</span>
-        <h2 class="section-title">PDF publications shown newest first.</h2>
-        <p class="section-copy">Add publication PDFs in the XML with title, date, PDF link, and optional thumbnail. The site sorts them latest first before showing them.</p>
-        <div class="publication-grid" id="publications-grid" style="margin-top:2rem;"></div>
-      </div>
-    </section>
-
-    <section class="section" id="media">
-      <div class="container grid-2">
-        <div>
-          <span class="eyebrow">Media</span>
-          <h2 class="section-title">Gallery, sponsors, and media coverage.</h2>
-          <p class="section-copy">This section keeps your broader media images, sponsor logos, and press coverage visually organized.</p>
-        </div>
-        <div class="card"><div class="meta">Visualization tip</div><p>Replace the placeholder URLs with real direct-view image links and PDF links to see the final visual result immediately in preview mode.</p></div>
-      </div>
-
-      <div class="container" style="margin-top:2rem;">
-        <h3 style="font-size:var(--text-lg); margin-bottom:1rem;">Media Gallery</h3>
-        <div class="gallery-grid" id="gallery-grid"></div>
-      </div>
-
-      <div class="container" style="margin-top:2rem;">
-        <h3 style="font-size:var(--text-lg); margin-bottom:1rem;">Sponsors</h3>
-        <div class="gallery-grid" id="sponsors-grid"></div>
-      </div>
-
-      <div class="container" style="margin-top:2rem;">
-        <h3 style="font-size:var(--text-lg); margin-bottom:1rem;">Media Publications Images</h3>
-        <div class="gallery-grid" id="media-grid"></div>
-      </div>
-    </section>
-
-    <section class="section" id="join-us">
-      <div class="container">
-        <div class="join-box">
-          <div>
-            <span class="eyebrow" style="background:rgba(255,255,255,0.18); color:white;">Join Us</span>
-            <h2 class="section-title" style="margin-top:1rem; color:white;">Make membership and participation frictionless.</h2>
-            <p>Keep your final membership form, volunteer form, WhatsApp invite, and contact links here.</p>
-          </div>
-          <div class="join-links"><a href="#">Membership Form</a><a href="#">Volunteer Interest</a><a href="#">Contact Committee</a></div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="about-us">
-      <div class="container grid-2">
-        <div>
-          <span class="eyebrow">About Us</span>
-          <h2 class="section-title">A strong community story, backed by real people.</h2>
-          <p class="section-copy">Council member cards below are loaded from XML, so names, roles, and pictures stay easy to update.</p>
-        </div>
-        <div class="card"><div class="meta">Recommended final content</div><p>Mission, history, association overview, office bearers, contact details, and location information.</p></div>
-      </div>
-      <div class="container council-grid" id="council-grid"></div>
-    </section>
-  </main>
-
-  <footer>
-    <div class="container footer-grid">
-      <div>
-        <div class="brand" style="margin-bottom:.75rem;"><svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:36px;height:36px;"><circle cx="32" cy="32" r="29" stroke="currentColor" stroke-width="3" opacity="0.25"/><path d="M32 16c3 6.6 8.4 11.9 15 15-6.6 3.1-12 8.4-15 15-3-6.6-8.4-11.9-15-15 6.6-3.1 12-8.4 15-15z" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/></svg><span class="brand-text"><strong>GGLCA</strong><span>Folder-style XML deployment package</span></span></div>
-        <p>This build now supports grouped images for events and a dedicated Publications tab for PDFs.</p>
-      </div>
-      <div class="card"><div class="meta">Files in package</div><p>gglca-site.html, sample-content.xml, and README.md with updated preview and hosting instructions.</p></div>
-    </div>
-  </footer>
+  </template>
 
   <script>
     (() => {
@@ -265,12 +182,7 @@
       const nav = document.getElementById('site-nav');
       const mobileToggle = document.querySelector('.mobile-nav-toggle');
       mobileToggle?.addEventListener('click', () => { const isOpen = nav.classList.toggle('open'); mobileToggle.setAttribute('aria-expanded', String(isOpen)); });
-      const links = [...document.querySelectorAll('nav a')];
-      const sections = links.map(link => document.querySelector(link.getAttribute('href'))).filter(Boolean);
-      const setActive = () => { const marker = scrollY + 120; let currentId = sections[0]?.id; for (const section of sections) { if (section.offsetTop <= marker) currentId = section.id; } links.forEach(link => link.classList.toggle('active', link.getAttribute('href') === '#' + currentId)); };
-      setActive(); addEventListener('scroll', setActive, { passive: true }); links.forEach(link => link.addEventListener('click', () => nav.classList.remove('open')));
 
-      const statusBar = document.getElementById('status-bar');
       const parser = new DOMParser();
       const text = (node, selector, fallback = '') => node.querySelector(selector)?.textContent?.trim() || fallback;
       const attrs = (nodes, mapper) => Array.from(nodes).map(mapper);
@@ -280,16 +192,74 @@
         return `<div class="gallery-grid" style="margin-top:1rem;">${images.map(img => `<div class="gallery-item">${renderImage(img.src, img.caption || img.title || label)}<div class="gallery-label">${img.caption || img.title || label}</div></div>`).join('')}</div>`;
       };
       const byLatest = (a, b) => new Date(b.date || '1900-01-01') - new Date(a.date || '1900-01-01');
-      const fill = (id, html) => document.getElementById(id).innerHTML = html;
+      const main = document.getElementById('main-content');
+      const navList = document.getElementById('nav-list');
+      const joinBtn = document.getElementById('join-btn');
+
+      const sectionRenderers = {
+        home: ({section, xml}) => {
+          const tpl = document.getElementById('hero-template').content.cloneNode(true);
+          tpl.getElementById('hero-title').textContent = text(xml, 'heroTitle', 'A vibrant digital home for the GGLCA community');
+          tpl.getElementById('hero-text').textContent = text(xml, 'heroText', 'Update this XML file to drive the content.');
+          return tpl;
+        },
+        events: ({section, xml}) => {
+          const events = attrs(xml.querySelectorAll('events event'), n => ({ title: n.getAttribute('title') || '', date: n.getAttribute('date') || '', text: n.getAttribute('text') || '', images: attrs(n.querySelectorAll('images image'), i => ({ src: i.getAttribute('src') || '', caption: i.getAttribute('caption') || '', title: i.getAttribute('title') || '' })) }));
+          return sectionBlock(section.id, section.label, section.title, section.description, `<div class="folder-grid">${events.map(item => `<article class="card"><div class="meta">${item.date || 'Upcoming event'}</div><h3>${item.title || 'Event title'}</h3><p>${item.text || 'Event summary goes here.'}</p>${renderMiniGallery(item.images, item.title || 'Event images')}</article>`).join('')}</div>`);
+        },
+        socialWork: ({section, xml}) => {
+          const social = attrs(xml.querySelectorAll('socialWork story'), n => ({ title: n.getAttribute('title') || '', text: n.getAttribute('text') || '', date: n.getAttribute('date') || '', images: attrs(n.querySelectorAll('images image'), i => ({ src: i.getAttribute('src') || '', caption: i.getAttribute('caption') || '', title: i.getAttribute('title') || '' })) }));
+          return sectionBlock(section.id, section.label, section.title, section.description, `<div class="folder-grid">${social.map(item => `<article class="card"><div class="meta">${item.date || 'Community service'}</div><h3>${item.title || 'Story title'}</h3><p>${item.text || 'Story description.'}</p>${renderMiniGallery(item.images, item.title || 'Social work images')}</article>`).join('')}</div>`);
+        },
+        publications: ({section, xml}) => {
+          const publications = attrs(xml.querySelectorAll('publications publication'), n => ({ title: n.getAttribute('title') || '', date: n.getAttribute('date') || '', pdf: n.getAttribute('pdf') || '', thumb: n.getAttribute('thumb') || '', summary: n.getAttribute('summary') || '' })).sort(byLatest);
+          return sectionBlock(section.id, section.label, section.title, section.description, `<div class="publication-grid">${publications.map(item => `<article class="pub-card"><div class="pdf-badge">PDF • ${item.date || 'Undated'}</div>${item.thumb ? `<div class="gallery-item" style="min-height:180px; margin-bottom:1rem;">${renderImage(item.thumb, item.title)}</div>` : ''}<h3>${item.title || 'Publication title'}</h3><p>${item.summary || 'Publication summary.'}</p><div class="pub-actions"><a href="${item.pdf || '#'}" target="_blank" rel="noopener noreferrer">Open PDF</a><a href="${item.pdf || '#'}" target="_blank" rel="noopener noreferrer">Download</a></div></article>`).join('')}</div>`);
+        },
+        media: ({section, xml}) => {
+          const gallery = attrs(xml.querySelectorAll('gallery image'), n => ({ title: n.getAttribute('title') || '', caption: n.getAttribute('caption') || '', src: n.getAttribute('src') || '' }));
+          const sponsors = attrs(xml.querySelectorAll('sponsors logoItem'), n => ({ name: n.getAttribute('name') || '', src: n.getAttribute('src') || '', url: n.getAttribute('url') || '#' }));
+          const media = attrs(xml.querySelectorAll('media publicationImage'), n => ({ title: n.getAttribute('title') || '', source: n.getAttribute('source') || '', image: n.getAttribute('image') || '' }));
+          return sectionBlock(section.id, section.label, section.title, section.description, `
+            <div class="grid-2"><div></div><div class="card"><div class="meta">Visualization tip</div><p>Replace placeholder image links with public direct-view URLs to see the final media section immediately.</p></div></div>
+            <div class="container" style="margin-top:2rem;"><h3 style="font-size:var(--text-lg); margin-bottom:1rem;">Media Gallery</h3><div class="gallery-grid">${gallery.map(item => `<div class="gallery-item">${renderImage(item.src, item.title)}<div class="gallery-label">${item.title || 'Gallery image'}${item.caption ? ' — ' + item.caption : ''}</div></div>`).join('')}</div></div>
+            <div class="container" style="margin-top:2rem;"><h3 style="font-size:var(--text-lg); margin-bottom:1rem;">Sponsors</h3><div class="gallery-grid">${sponsors.map(item => `<a class="gallery-item media-logo" href="${item.url || '#'}" target="_blank" rel="noopener noreferrer">${renderImage(item.src, item.name)}<div class="gallery-label">${item.name || 'Sponsor'}</div></a>`).join('')}</div></div>
+            <div class="container" style="margin-top:2rem;"><h3 style="font-size:var(--text-lg); margin-bottom:1rem;">Media Publications Images</h3><div class="gallery-grid">${media.map(item => `<div class="gallery-item">${renderImage(item.image, item.title)}<div class="gallery-label">${item.title || 'Media item'}${item.source ? ' — ' + item.source : ''}</div></div>`).join('')}</div></div>`);
+        },
+        joinUs: ({section}) => sectionWrap(section.id, `<div class="container"><div class="join-box"><div><span class="eyebrow" style="background:rgba(255,255,255,0.18); color:white;">${section.label || 'Join Us'}</span><h2 class="section-title" style="margin-top:1rem; color:white;">${section.title || 'Make membership and participation frictionless.'}</h2><p>${section.description || 'Keep your final membership form, volunteer form, WhatsApp invite, and contact links here.'}</p></div><div class="join-links"><a href="#">Membership Form</a><a href="#">Volunteer Interest</a><a href="#">Contact Committee</a></div></div></div>`),
+        aboutUs: ({section, xml}) => {
+          const council = attrs(xml.querySelectorAll('council member'), n => ({ name: n.getAttribute('name') || '', role: n.getAttribute('role') || '', image: n.getAttribute('image') || '' }));
+          return sectionWrap(section.id, `<div class="container grid-2"><div><span class="eyebrow">${section.label || 'About Us'}</span><h2 class="section-title">${section.title || 'A strong community story, backed by real people.'}</h2><p class="section-copy">${section.description || 'Council member cards below are loaded from XML, so names, roles, and pictures stay easy to update.'}</p></div><div class="card"><div class="meta">Recommended final content</div><p>Mission, history, association overview, office bearers, contact details, and location information.</p></div></div><div class="container council-grid" style="margin-top:2rem;">${council.map(item => `<article class="card"><div class="council-avatar">${renderImage(item.image, item.name)}</div><h3>${item.name || 'Council Member'}</h3><p>${item.role || 'Role'}</p></article>`).join('')}</div>`);
+        },
+        genericCards: ({section, xml}) => {
+          const key = section.source || 'generic';
+          const items = attrs(xml.querySelectorAll(`${key} item`), n => ({ title: n.getAttribute('title') || '', meta: n.getAttribute('meta') || '', text: n.getAttribute('text') || '' }));
+          return sectionBlock(section.id, section.label, section.title, section.description, `<div class="dynamic-grid">${items.map(item => `<article class="card"><div class="meta">${item.meta || section.label || 'Info'}</div><h3>${item.title || 'Title'}</h3><p>${item.text || 'Content'}</p></article>`).join('')}</div>`);
+        }
+      };
+
+      function sectionWrap(id, inner) {
+        return `<section class="section dynamic-section" id="${id}">${inner}</section>`;
+      }
+      function sectionBlock(id, label, title, description, bodyHtml) {
+        return sectionWrap(id, `<div class="container"><span class="eyebrow">${label || ''}</span><h2 class="section-title">${title || ''}</h2><p class="section-copy">${description || ''}</p>${bodyHtml ? `<div style="margin-top:2rem;">${bodyHtml}</div>` : ''}</div>`);
+      }
 
       fetch('./sample-content.xml')
         .then(r => r.text())
         .then(xmlText => {
           const xml = parser.parseFromString(xmlText, 'text/xml');
-          document.title = text(xml, 'siteTitle', 'GGLCA');
+          const siteTitle = text(xml, 'siteTitle', 'GGLCA');
+          document.title = siteTitle;
+          document.getElementById('site-title-mini').textContent = text(xml, 'shortTitle', siteTitle);
+          document.getElementById('footer-site-title').textContent = text(xml, 'shortTitle', siteTitle);
           document.getElementById('site-tagline').textContent = text(xml, 'tagline', 'Green Glen Layout Cultural Association');
-          document.getElementById('hero-title').textContent = text(xml, 'heroTitle', 'A vibrant digital home for the GGLCA community');
-          document.getElementById('hero-text').textContent = text(xml, 'heroText', 'Update this XML file to drive the content.');
+
+          const logoUrl = text(xml, 'logo');
+          if (logoUrl) {
+            const imgHtml = `<img src="${logoUrl}" alt="${siteTitle} logo" loading="eager" decoding="async">`;
+            document.getElementById('brand-mark').innerHTML = imgHtml;
+            document.getElementById('footer-brand-mark').innerHTML = imgHtml;
+          }
 
           const primary = text(xml, 'primaryColor');
           const secondary = text(xml, 'secondaryColor');
@@ -298,75 +268,43 @@
           if (secondary) root.style.setProperty('--color-secondary', secondary);
           if (accent) root.style.setProperty('--color-accent', accent);
 
-          const events = attrs(xml.querySelectorAll('events event'), n => ({
-            title: n.getAttribute('title') || '',
-            date: n.getAttribute('date') || '',
-            text: n.getAttribute('text') || '',
-            images: attrs(n.querySelectorAll('images image'), i => ({ src: i.getAttribute('src') || '', caption: i.getAttribute('caption') || '', title: i.getAttribute('title') || '' }))
-          }));
+          const navItems = attrs(xml.querySelectorAll('navigation tab'), n => ({ id: n.getAttribute('id') || '', label: n.getAttribute('label') || '', visible: (n.getAttribute('visible') || 'true') !== 'false' }));
+          const sections = attrs(xml.querySelectorAll('sections section'), n => ({ id: n.getAttribute('id') || '', label: n.getAttribute('label') || '', title: n.getAttribute('title') || '', description: n.getAttribute('description') || '', type: n.getAttribute('type') || 'genericCards', source: n.getAttribute('source') || '' }));
 
-          const social = attrs(xml.querySelectorAll('socialWork story'), n => ({
-            title: n.getAttribute('title') || '',
-            text: n.getAttribute('text') || '',
-            date: n.getAttribute('date') || '',
-            images: attrs(n.querySelectorAll('images image'), i => ({ src: i.getAttribute('src') || '', caption: i.getAttribute('caption') || '', title: i.getAttribute('title') || '' }))
-          }));
+          navList.innerHTML = navItems.filter(n => n.visible).map(item => `<li><a href="#${item.id}">${item.label}</a></li>`).join('');
+          main.innerHTML = '';
 
-          const publications = attrs(xml.querySelectorAll('publications publication'), n => ({
-            title: n.getAttribute('title') || '',
-            date: n.getAttribute('date') || '',
-            pdf: n.getAttribute('pdf') || '',
-            thumb: n.getAttribute('thumb') || '',
-            summary: n.getAttribute('summary') || ''
-          })).sort(byLatest);
+          sections.forEach(section => {
+            const renderer = sectionRenderers[section.type] || sectionRenderers.genericCards;
+            const rendered = renderer({ section, xml });
+            if (typeof rendered === 'string') {
+              main.insertAdjacentHTML('beforeend', rendered);
+            } else {
+              main.appendChild(rendered);
+            }
+          });
 
-          const gallery = attrs(xml.querySelectorAll('gallery image'), n => ({ title: n.getAttribute('title') || '', caption: n.getAttribute('caption') || '', src: n.getAttribute('src') || '' }));
-          const sponsors = attrs(xml.querySelectorAll('sponsors logo'), n => ({ name: n.getAttribute('name') || '', src: n.getAttribute('src') || '', url: n.getAttribute('url') || '#' }));
-          const media = attrs(xml.querySelectorAll('media publicationImage'), n => ({ title: n.getAttribute('title') || '', source: n.getAttribute('source') || '', image: n.getAttribute('image') || '' }));
-          const council = attrs(xml.querySelectorAll('council member'), n => ({ name: n.getAttribute('name') || '', role: n.getAttribute('role') || '', image: n.getAttribute('image') || '' }));
+          const eventCount = xml.querySelectorAll('events event').length;
+          const publicationCount = xml.querySelectorAll('publications publication').length;
+          const galleryCount = xml.querySelectorAll('gallery image, media publicationImage').length;
+          const sponsorCount = xml.querySelectorAll('sponsors logoItem').length;
+          document.getElementById('stat-events')?.replaceChildren(document.createTextNode(String(eventCount)));
+          document.getElementById('stat-publications')?.replaceChildren(document.createTextNode(String(publicationCount)));
+          document.getElementById('stat-gallery')?.replaceChildren(document.createTextNode(String(galleryCount)));
+          document.getElementById('stat-sponsors')?.replaceChildren(document.createTextNode(String(sponsorCount)));
+          document.getElementById('status-bar')?.replaceChildren(document.createTextNode('XML loaded successfully. Navigation, sections, grouped images, publications, and logo placeholder are now controlled from XML.'));
 
-          document.getElementById('stat-events').textContent = events.length;
-          document.getElementById('stat-publications').textContent = publications.length;
-          document.getElementById('stat-gallery').textContent = gallery.length + media.length;
-          document.getElementById('stat-sponsors').textContent = sponsors.length;
+          if (!navItems.some(item => item.id === 'join-us')) {
+            joinBtn.style.display = 'none';
+          }
 
-          fill('events-grid', events.map(item => `
-            <article class="card">
-              <div class="meta">${item.date || 'Upcoming event'}</div>
-              <h3>${item.title || 'Event title'}</h3>
-              <p>${item.text || 'Event summary goes here.'}</p>
-              ${renderMiniGallery(item.images, item.title || 'Event images')}
-            </article>`).join(''));
-
-          fill('social-grid', social.map(item => `
-            <article class="card">
-              <div class="meta">${item.date || 'Community service'}</div>
-              <h3>${item.title || 'Story title'}</h3>
-              <p>${item.text || 'Story description.'}</p>
-              ${renderMiniGallery(item.images, item.title || 'Social work images')}
-            </article>`).join(''));
-
-          fill('publications-grid', publications.map(item => `
-            <article class="pub-card">
-              <div class="pdf-badge">PDF • ${item.date || 'Undated'}</div>
-              ${item.thumb ? `<div class="gallery-item" style="min-height:180px; margin-bottom:1rem;">${renderImage(item.thumb, item.title)}</div>` : ''}
-              <h3>${item.title || 'Publication title'}</h3>
-              <p>${item.summary || 'Publication summary.'}</p>
-              <div class="pub-actions">
-                <a href="${item.pdf || '#'}" target="_blank" rel="noopener noreferrer">Open PDF</a>
-                <a href="${item.pdf || '#'}" target="_blank" rel="noopener noreferrer">Download</a>
-              </div>
-            </article>`).join(''));
-
-          fill('gallery-grid', gallery.map(item => `<div class="gallery-item">${renderImage(item.src, item.title)}<div class="gallery-label">${item.title || 'Gallery image'}${item.caption ? ' — ' + item.caption : ''}</div></div>`).join(''));
-          fill('sponsors-grid', sponsors.map(item => `<a class="gallery-item media-logo" href="${item.url || '#'}" target="_blank" rel="noopener noreferrer">${renderImage(item.src, item.name)}<div class="gallery-label">${item.name || 'Sponsor'}</div></a>`).join(''));
-          fill('media-grid', media.map(item => `<div class="gallery-item">${renderImage(item.image, item.title)}<div class="gallery-label">${item.title || 'Media item'}${item.source ? ' — ' + item.source : ''}</div></div>`).join(''));
-          fill('council-grid', council.map(item => `<article class="card"><div class="council-avatar">${renderImage(item.image, item.name)}</div><h3>${item.name || 'Council Member'}</h3><p>${item.role || 'Role'}</p></article>`).join(''));
-
-          statusBar.textContent = 'XML loaded successfully. Grouped event images and publication PDFs are now being rendered from the XML structure.';
+          const links = [...document.querySelectorAll('nav a')];
+          const sectionEls = links.map(link => document.querySelector(link.getAttribute('href'))).filter(Boolean);
+          const setActive = () => { const marker = scrollY + 120; let currentId = sectionEls[0]?.id; for (const section of sectionEls) { if (section.offsetTop <= marker) currentId = section.id; } links.forEach(link => link.classList.toggle('active', link.getAttribute('href') === '#' + currentId)); };
+          setActive(); addEventListener('scroll', setActive, { passive: true }); links.forEach(link => link.addEventListener('click', () => nav.classList.remove('open')));
         })
         .catch(err => {
-          statusBar.textContent = 'XML could not be loaded in direct file-open mode. Use a local server as described in README.md to preview the implementation properly.';
+          main.innerHTML = '<section class="section"><div class="container"><div class="card"><div class="meta">Preview note</div><h3>XML could not be loaded</h3><p>Use a local server as described in README.md to preview the implementation correctly.</p></div></div></section>';
           console.error(err);
         });
     })();
