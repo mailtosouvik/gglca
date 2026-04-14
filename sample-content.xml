@@ -1,0 +1,74 @@
+<gglca>
+  <siteSettings>
+    <siteTitle>Green Glen Layout Cultural Association</siteTitle>
+    <tagline>Community, culture, social work, and celebrations</tagline>
+    <primaryColor>#d63b2f</primaryColor>
+    <secondaryColor>#ff8a00</secondaryColor>
+    <accentColor>#7f2aff</accentColor>
+  </siteSettings>
+
+  <home>
+    <heroTitle>Welcome to GGLCA</heroTitle>
+    <heroText>This page now supports grouped event photos and a Publications tab with latest-first PDFs.</heroText>
+  </home>
+
+  <council>
+    <member name="President" role="President" image="https://drive.google.com/uc?export=view&id=YOUR_FILE_ID" />
+    <member name="Secretary" role="Secretary" image="https://drive.google.com/uc?export=view&id=YOUR_FILE_ID" />
+    <member name="Treasurer" role="Treasurer" image="https://drive.google.com/uc?export=view&id=YOUR_FILE_ID" />
+  </council>
+
+  <events>
+    <event title="Durga Puja" date="2026-10-10" text="Annual flagship celebration">
+      <images folder="DURGA_PUJA_DRIVE_FOLDER_REFERENCE">
+        <image title="Pandal lighting" caption="Evening view" src="https://drive.google.com/uc?export=view&id=YOUR_FILE_ID" />
+        <image title="Cultural stage" caption="Performance moment" src="https://drive.google.com/uc?export=view&id=YOUR_FILE_ID" />
+        <image title="Community gathering" caption="Resident participation" src="https://drive.google.com/uc?export=view&id=YOUR_FILE_ID" />
+      </images>
+    </event>
+    <event title="Literary Meet" date="2026-07-18" text="Readers and writers gathering">
+      <images folder="LITERARY_MEET_DRIVE_FOLDER_REFERENCE">
+        <image title="Author interaction" caption="Discussion" src="https://drive.google.com/uc?export=view&id=YOUR_FILE_ID" />
+        <image title="Audience view" caption="Community participation" src="https://drive.google.com/uc?export=view&id=YOUR_FILE_ID" />
+      </images>
+    </event>
+  </events>
+
+  <socialWork>
+    <story title="Donation Drive" date="2026-03-12" text="Support initiative details">
+      <images folder="DONATION_DRIVE_FOLDER_REFERENCE">
+        <image title="Distribution" caption="Volunteers in action" src="https://drive.google.com/uc?export=view&id=YOUR_FILE_ID" />
+        <image title="Support kits" caption="Prepared materials" src="https://drive.google.com/uc?export=view&id=YOUR_FILE_ID" />
+      </images>
+    </story>
+    <story title="Education Support" date="2026-01-25" text="Helping children with resources and encouragement">
+      <images folder="EDUCATION_SUPPORT_FOLDER_REFERENCE">
+        <image title="Book donation" caption="Resource support" src="https://drive.google.com/uc?export=view&id=YOUR_FILE_ID" />
+      </images>
+    </story>
+  </socialWork>
+
+  <publications folder="PUBLICATION_PDF_FOLDER_REFERENCE">
+    <publication title="Anandotsab Souvenir 2026" date="2026-10-15" pdf="https://drive.google.com/file/d/YOUR_FILE_ID/view" thumb="https://drive.google.com/uc?export=view&id=YOUR_THUMB_ID" summary="Annual publication and festival highlights" />
+    <publication title="Community Bulletin March 2026" date="2026-03-30" pdf="https://drive.google.com/file/d/YOUR_FILE_ID/view" thumb="https://drive.google.com/uc?export=view&id=YOUR_THUMB_ID" summary="Monthly updates and activities" />
+    <publication title="Annual Report 2025" date="2026-01-20" pdf="https://drive.google.com/file/d/YOUR_FILE_ID/view" thumb="https://drive.google.com/uc?export=view&id=YOUR_THUMB_ID" summary="Highlights, impact, and milestones" />
+  </publications>
+
+  <gallery>
+    <image title="Cultural evening" caption="Stage performance" src="https://drive.google.com/uc?export=view&id=YOUR_FILE_ID" />
+    <image title="Community picnic" caption="Family gathering" src="https://drive.google.com/uc?export=view&id=YOUR_FILE_ID" />
+    <image title="Children's event" caption="Fun activities" src="https://drive.google.com/uc?export=view&id=YOUR_FILE_ID" />
+    <image title="Festival preparation" caption="Volunteer energy" src="https://drive.google.com/uc?export=view&id=YOUR_FILE_ID" />
+  </gallery>
+
+  <sponsors>
+    <logo name="Sponsor One" src="https://drive.google.com/uc?export=view&id=YOUR_FILE_ID" url="https://example.com" />
+    <logo name="Sponsor Two" src="https://drive.google.com/uc?export=view&id=YOUR_FILE_ID" url="https://example.com" />
+    <logo name="Sponsor Three" src="https://drive.google.com/uc?export=view&id=YOUR_FILE_ID" url="https://example.com" />
+  </sponsors>
+
+  <media>
+    <publicationImage title="Press Coverage" source="Publication Name" image="https://drive.google.com/uc?export=view&id=YOUR_FILE_ID" />
+    <publicationImage title="Event Spotlight" source="Community News" image="https://drive.google.com/uc?export=view&id=YOUR_FILE_ID" />
+  </media>
+</gglca>
