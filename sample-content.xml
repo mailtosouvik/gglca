@@ -3,7 +3,7 @@
     <siteTitle>Green Glen Layout Cultural Association</siteTitle>
     <shortTitle>GGLCA</shortTitle>
     <tagline>Connect, Collaborate, Celebrate</tagline>
-    <logo>https://drive.google.com/file/d/1qhyi4yUJUj6UBi1LRla7bkHhFU9bufoA</logo>
+    <logo>https://drive.google.com/uc?export=view&id=1qhyi4yUJUj6UBi1LRla7bkHhFU9bufoA</logo>
     <primaryColor>#d63b2f</primaryColor>
     <secondaryColor>#ff8a00</secondaryColor>
     <accentColor>#7f2aff</accentColor>
@@ -43,9 +43,9 @@
   <events>
     <event title="Durga Puja" date="2026-10-10" text="Annual flagship celebration">
       <images folder="https://drive.google.com/drive/folders/1lNzwjtfjokkXfY1spMb73ujqoz0XjY3L">
-        <image title="Pandal lighting" caption="Evening view" src="https://drive.google.com/file/d/1VWiC1F3pMIO6xq7WE-gaTRlmiCSk5ApJ" />
-        <image title="Cultural stage" caption="Performance moment" src="https://drive.google.com/file/d/1NEM9oxqgT7QueOd6OzLZ_B3uK6dJ_IKu" />
-        <image title="Community gathering" caption="Resident participation" src="https://drive.google.com/file/d/18m9y5gEBl-EL7cfNDG6FwEKKg8gvVTAA" />
+        <image title="Pandal lighting" caption="Evening view" src="https://drive.google.com/uc?export=view&id=1VWiC1F3pMIO6xq7WE-gaTRlmiCSk5ApJ" />
+        <image title="Cultural stage" caption="Performance moment" src="https://drive.google.com/uc?export=view&id=1NEM9oxqgT7QueOd6OzLZ_B3uK6dJ_IKu" />
+        <image title="Community gathering" caption="Resident participation" src="https://drive.google.com/uc?export=view&id=18m9y5gEBl-EL7cfNDG6FwEKKg8gvVTAA" />
       </images>
     </event>
     <event title="Literary Meet" date="2026-07-18" text="Readers and writers gathering">
